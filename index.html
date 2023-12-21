@@ -13,12 +13,14 @@
         <a href="#"><img id="logo" src="images/giftabledlogo.png" alt="Your Logo"></a>
     </div>
     <div class="navbar-center">
-        <h1>The Inclusion Spin Wheel Game</h1>
+        <h1>Wheel of Inclusion</h1>
     </div>
     <div class="navbar-right">
         <a href="https://giftabled.org/">GiftAbled</a>
     </div>
 </nav>
+<div class="spinaway"><h4>Ready To Brainstorm On Inclusion? Spin Away!</h4></div>
+
 
 <div class="container">
 
@@ -42,6 +44,7 @@
 <!-- popup div -->
 <div class="popup" id="popup">
     <!-- <img src="images/404-tick.png"> -->
+    <div id="topic"><h1>Topic</h1></div>
     <div class="defination" id="defination">
         <h2>Definition</h2>
         <p> Discussing how to ensure that disaster preparedness and response plans consider the needs of individuals with disabilities</p>
@@ -137,9 +140,33 @@
                     .attr("class", "slice");
     
         var colors = ["#ffd301", "#ffb921", "#1497d4", "#0047ac","#ffb921"];
+
+     // Add shadow on the wheel
+svg.append("defs").append("filter")
+    .attr("id", "drop-shadow")
+    .attr("height", "130%")
+    .append("feGaussianBlur")
+    .attr("in", "SourceAlpha")
+    .attr("stdDeviation", 5)
+    .attr("result", "blur");
+
+svg.select("#drop-shadow").append("feOffset")
+    .attr("dx", 5)
+    .attr("dy", 5);
+
+var feMerge = svg.select("#drop-shadow").append("feMerge");
+feMerge.append("feMergeNode");
+feMerge.append("feMergeNode")
+    .attr("in", "SourceGraphic");
         arcs.append("path")
         .attr("fill", function(d, i){ return colors[i % colors.length]; })
-        .attr("d", function (d) { return arc(d); });
+        //add border of wheel
+        .attr("stroke", "Brown")  // Add this line for the border color
+       .attr("stroke-width", 5)  // Add this line for the border width
+        .attr("d", function (d) { return arc(d); })
+        //call shadow
+        .style("filter", "url(#drop-shadow)");
+       
     
                 arcs.append("text").attr("transform", function(d){
                         d.innerRadius = 0;
@@ -172,7 +199,7 @@
                          pieslice = Math.round(1440/data.length),
                          rng      = Math.floor((Math.random() * 1440) + 360);
                         
-                    rotation = (Math.round(rng / ps) * ps);
+                    rotation = (Math.round(rng / ps) * ps)*2;
                     
                     picked = Math.round(data.length - (rotation % 360)/ps);
                     picked = picked >= data.length ? (picked % data.length) : picked;
@@ -190,9 +217,13 @@
                             //mark question as seen
                             d3.select(".slice:nth-child(" + (picked + 1) + ") path")
                                 .attr("fill", "#ffff");
+
+                            //populate topic
+                            d3.select("#topic h1")
+                                .text(data[picked].label );
                             //populate defination
                             d3.select("#defination p")
-                                .text(data[picked].label+ "- " +data[picked].question ) ;
+                                .text(data[picked].question ) ;
                                
                                 //populate funfact                       
                                 d3.select("#funfact p")
