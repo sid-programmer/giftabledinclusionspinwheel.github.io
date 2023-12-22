@@ -155,7 +155,7 @@ svg.append("defs").append("filter")
     .attr("result", "blur");
 
 svg.select("#drop-shadow").append("feOffset")
-    .attr("dx", 5)
+    .attr("dx", 0)
     .attr("dy", 5);
 
 var feMerge = svg.select("#drop-shadow").append("feMerge");
@@ -256,6 +256,8 @@ feMerge.append("feMergeNode")
                     .attr("cx", 0)
                     .attr("cy", 0)
                     .attr("r", 60)
+                    .attr("stroke", "Brown")  // Add this line for the border color
+                    .attr("stroke-width", 5)  // Add this line for the border width
                     .style({"fill":"#fff","cursor":"pointer"});
                 //spin text
                 container.append("text")
