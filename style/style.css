@@ -216,8 +216,7 @@ font-size: 22px;
 @media screen and (max-width: 737px) {
     .navbar{
         height: 120px;
-        padding-left: 10px;
-        padding-right: 10px;
+        
     }
     
     #chart {
