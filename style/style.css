@@ -152,6 +152,11 @@ box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     
 }
 
+.popup h1
+{
+margin-top: 30px;
+}
+
 .popup p
 {
   text-align: left;  
@@ -209,6 +214,11 @@ font-size: 22px;
 }
 
 @media screen and (max-width: 737px) {
+    .navbar{
+        height: 120px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
     
     #chart {
         transform: translate(-50%,-50%)scale(.6);
@@ -248,12 +258,9 @@ font-size: 22px;
 .popup {
    
 width:350px;
-
-
 top:50%;
 left: 50%;
 transform: translate(-50%,-50%)scale(.5);
-
 margin-top: 20px;
    
     
@@ -278,6 +285,13 @@ margin-top: 20px;
     font-size: 15px;
 };
 
+}
+
+@media screen and (max-width: 420px)
+{
+    .navbar{
+        width: 420px;
+    }
 }
 
 
