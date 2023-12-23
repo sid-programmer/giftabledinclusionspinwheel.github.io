@@ -20,7 +20,7 @@
     </div>
     
     <div class="navbar-right">
-        <a href="https://giftabled.org/">GiftAbled</a>
+        <a href="https://giftabled.org/" target="_blank">GiftAbled</a>
     </div>
 </nav>
 
@@ -47,7 +47,7 @@
     ></audio>
 <!-- popup div -->
 <div class="popup" id="popup">
-    <!-- <img src="images/404-tick.png"> -->
+   
     <div id="topic"><h1>Topic</h1></div>
     <div class="defination" id="defination">
         <h2>Definition</h2>
@@ -147,7 +147,7 @@
 
      // Add shadow on the wheel
 svg.append("defs").append("filter")
-    .attr("id", "drop-shadow")
+    .attr("id", "drop-shadow")    
     .attr("height", "130%")
     .append("feGaussianBlur")
     .attr("in", "SourceAlpha")
@@ -164,6 +164,7 @@ feMerge.append("feMergeNode")
     .attr("in", "SourceGraphic");
         arcs.append("path")
         .attr("fill", function(d, i){ return colors[i % colors.length]; })
+      
         //add border of wheel
         .attr("stroke", "Brown")  // Add this line for the border color
        .attr("stroke-width", 5)  // Add this line for the border width
@@ -238,10 +239,6 @@ feMerge.append("feMergeNode")
                                .text(data[picked].scenario)                               
                             oldrotation = rotation;
                             applause.play();
-                      
-                            /* Get the result value from object "data" */
-                            // console.log(data[picked].value)
-                            /* Comment the below line for restrict spin to sngle time */
                             container.on("click", spin);
                         });
                 }
